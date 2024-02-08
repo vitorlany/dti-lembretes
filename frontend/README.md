@@ -1,5 +1,5 @@
 # Instruções de uso
-Primeiro certifique-se de ter instalado [node](https://nodejs.org/en/download/current)
+Primeiro, certifique-se de ter instalado [node](https://nodejs.org/en/download/current)
 
 Após isso, instale todas as dependências do projeto
 ```console
