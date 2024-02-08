@@ -19,10 +19,14 @@ function index() {
   }
 
   return (
-    <>
-      <NovoLembrete onCLick={addLembrete} />
-      <ListarLembretes lembretes={lembretes} />
-    </>
+    <div className="">
+      <aside>
+        <NovoLembrete onCLick={addLembrete} />
+      </aside>
+      <main>
+        <ListarLembretes lembretes={lembretes} />
+      </main>
+    </div>
   );
 }
 

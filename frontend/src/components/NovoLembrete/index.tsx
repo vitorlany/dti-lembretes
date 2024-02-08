@@ -7,7 +7,9 @@ const validateDateAfterToday = (inputDate: any) => {
   let now = new Date();
   input.setHours(24, 0, 0, 0);
   now.setHours(0, 0, 0, 0);
-  return input.getTime() > now.getTime();
+  return (
+    input.getTime() > now.getTime() || "A data deve ser superior ao dia de hoje"
+  );
 };
 
 interface Props {
@@ -51,7 +53,7 @@ function index(props: Props) {
           <input
             type="date"
             {...register("data", {
-              required: "A data deve ser superior ao dia de hoje",
+              required: "A data deve ser selecionada",
               validate: validateDateAfterToday,
             })}
           />
