@@ -2,8 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta+Mahee:wght@400;500;700&display=swap");
 
 $primary-color: #33aab7;
-$text-01: #2d3436;
+$text-01: #0e2b2e;
 $text-02: #636e72;
+$border-radius: 8px;
+
+$spacing-1: 16px;
+$spacing-2: 8px;
 
 * {
   box-sizing: border-box;
@@ -20,6 +24,43 @@ h6 {
   font-family: "Mukta Mahee", sans-serif;
   font-weight: bold;
   color: $text-01;
+}
+
+input {
+  width: 100%;
+  max-width: 300px;
+  font-size: medium;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: $border-radius;
+  border: 2px solid $text-02;
+  
+  &:focus {
+    color: $text-01;
+    outline: none;
+    border: 2px solid $primary-color;
+  }
+}
+
+button {
+  padding: 16px;
+  border-radius: $border-radius;
+  outline: none;
+  border: 2px solid $text-02;
+  &:hover {
+    cursor: pointer;
+    border: 2px solid $primary-color;
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+label {
+  display: block;
+  margin-top: $spacing-1;
+  margin-bottom: $spacing-2;
+  font-size: larger;
+  font-weight: 600;
 }
 
 @mixin sm {
@@ -44,4 +85,20 @@ h6 {
   @media (max-width: 1200px) {
     @content;
   }
+}
+
+.mb-1 {
+  margin-bottom: $spacing-1;
+}
+
+.mb-2 {
+  margin-bottom: $spacing-2;
+}
+
+.mt-1 {
+  margin-top: $spacing-1;
+}
+
+.mt-2 {
+  margin-top: $spacing-2;
 }

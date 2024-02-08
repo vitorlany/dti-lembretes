@@ -13,7 +13,7 @@ const validateDateAfterToday = (inputDate: any) => {
 };
 
 interface Props {
-  onCLick: (lembrete: Lembrete) => void;
+  onClick: (lembrete: Lembrete) => void;
 }
 
 function index(props: Props) {
@@ -24,7 +24,7 @@ function index(props: Props) {
   } = useForm();
 
   const handleCriar = async (fields: FieldValues) => {
-    props.onCLick({
+    props.onClick({
       nome: fields.nome,
       data: fields.data,
     });
@@ -38,6 +38,7 @@ function index(props: Props) {
           <label htmlFor="nome">Nome</label>
           <input
             type="text"
+            placeholder="Insira o nome do lembrete"
             {...register("nome", {
               required: "Favor informar um nome para continuar",
             })}
@@ -63,7 +64,7 @@ function index(props: Props) {
             render={({ message }) => <p>{message}</p>}
           />
         </div>
-        <button type="submit">Criar</button>
+        <button className="mt-1" type="submit">Criar</button>
       </form>
     </div>
   );

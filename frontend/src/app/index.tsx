@@ -20,7 +20,7 @@ function index() {
   return (
     <div className={style.grid}>
       <aside>
-        <NovoLembrete onCLick={addLembrete} />
+        <NovoLembrete onClick={addLembrete} />
       </aside>
       <main>
         <ListarLembretes lembretes={lembretes} />
