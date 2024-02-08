@@ -1,10 +1,30 @@
 import "./index.module.scss";
 
+import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import moment from "moment";
 
-const handleCriar = async (fields: FieldValues) => {
-  console.log(fields);
+interface Lembrete {
+  nome: string;
+  data: number;
+}
+
+const validateDateAfterToday = (inputDate: any) => {
+  let input = new Date(inputDate);
+  let now = new Date();
+  input.setHours(24, 0, 0, 0);
+  now.setHours(0, 0, 0, 0);
+  return input.getTime() > now.getTime();
+};
+
+let calendarFormat = {
+  sameDay: "[Today], DD",
+  nextDay: "[Tomorrow], DD",
+  nextWeek: "dddd",
+  lastDay: "[Yesterday]",
+  lastWeek: "[Last] dddd",
+  sameElse: "DD/MM/YYYY",
 };
 
 function index() {
@@ -14,10 +34,16 @@ function index() {
     formState: { errors },
   } = useForm();
 
-  const validateDate = (inputDate: any) => {
-    let input = new Date(inputDate).setHours(0, 0, 0, 0);
-    let now = new Date().setHours(0, 0, 0, 0);
-    return input > now;
+  const [lembretes, setLembretes] = useState<Lembrete[]>([]);
+
+  const handleCriar = async (fields: FieldValues) => {
+    setLembretes([
+      ...lembretes,
+      {
+        nome: fields.nome,
+        data: fields.data,
+      },
+    ]);
   };
 
   return (
@@ -44,7 +70,7 @@ function index() {
             type="date"
             {...register("data", {
               required: "A data deve ser superior ao dia de hoje",
-              validate: validateDate,
+              validate: validateDateAfterToday,
             })}
           />
           <ErrorMessage
@@ -57,10 +83,14 @@ function index() {
       </form>
       {/*  */}
       <h1>Lista de lembretes</h1>
-      <article>
-        <time dateTime="2024-01-01">01/01/2024</time>
-        <p>Vídeo de estatística</p>
-      </article>
+      {lembretes.map(({ data, nome }) => (
+        <article>
+          <time dateTime={moment(data).format("YYYY-MM-DD")}>
+            {moment(data).calendar(null, calendarFormat)}
+          </time>
+          <p>{nome}</p>
+        </article>
+      ))}
     </>
   );
 }
