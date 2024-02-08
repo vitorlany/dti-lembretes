@@ -1,3 +1,4 @@
+import style from "./index.module.scss";
 import { Lembrete } from "../../types/lembrete";
 import moment from "moment";
 
@@ -29,7 +30,13 @@ function index(props: Props) {
           </article>
         ))
       ) : (
-        <p>Nada foi feito ainda 😢</p>
+        // <p>Nada foi feito ainda 😢</p>
+        <>
+        <h2>08/02/2024</h2>
+        <article className={style.card}>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio, magnam temporibus. Quam necessitatibus ullam repudiandae soluta itaque dolores nemo expedita?</p>
+        </article>
+        </>
       )}
     </div>
   );

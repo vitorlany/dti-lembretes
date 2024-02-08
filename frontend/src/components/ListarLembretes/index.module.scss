@@ -1,0 +1,13 @@
+@use "../../base";
+
+.card {
+  padding: 10px 16px;
+  background-color: base.$disable-color;
+  border-radius: base.$border-radius;
+  &:hover {
+    background-color: base.$primary-color;
+    p {
+      color: white;
+    }
+  }
+}
