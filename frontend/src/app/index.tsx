@@ -5,7 +5,12 @@ import NovoLembrete from "../components/NovoLembrete/index.tsx";
 import ListarLembretes from "../components/ListarLembretes/index.tsx";
 
 function index() {
-  const [lembretes, setLembretes] = useState<Lembrete[]>([]);
+  const [lembretes, setLembretes] = useState<Lembrete[]>([
+    // { nome: "abc", data: 1234000000000 }, // Para fins de teste
+    // { nome: "cba", data: 2234000000000 }, // Para fins de teste
+    // { nome: "cba", data: 2234000000000 }, // Para fins de teste
+    // { nome: "cba", data: 2234000000000 }, // Para fins de teste
+  ]);
 
   function addLembrete(fields: Lembrete) {
     setLembretes([

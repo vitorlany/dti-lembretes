@@ -2,44 +2,51 @@ import style from "./index.module.scss";
 import { Lembrete } from "../../types/lembrete";
 import moment from "moment";
 
-let calendarFormat = {
-  sameDay: "[Today], DD",
-  nextDay: "[Tomorrow], DD",
-  nextWeek: "dddd",
-  lastDay: "[Yesterday]",
-  lastWeek: "[Last] dddd",
-  sameElse: "DD/MM/YYYY",
-};
-
 interface Props {
   lembretes: Lembrete[];
 }
 
 function index(props: Props) {
-  let lembretes = props.lembretes;
+  let grouped = props.lembretes.reduce((r: any, a: any) => {
+    r[a.data] = [...(r[a.data] || []), a];
+    return r;
+  }, {});
+
+  let dataArray = Object.keys(grouped);
+
   return (
     <div>
       <h1>Lista de lembretes</h1>
-      {lembretes.length > 0 ? (
-        lembretes.map(({ data, nome }) => (
-          <article>
-            <time dateTime={moment(data).format("YYYY-MM-DD")}>
-              {moment(data).calendar(null, calendarFormat)}
-            </time>
-            <p>{nome}</p>
-          </article>
-        ))
+      {dataArray.length > 0 ? (
+        dataArray.map((obj) => {
+          return (
+            <>
+              <time dateTime={moment(obj).format("YYYY-MM-DD")}>
+                {moment(obj).calendar()} 
+                {/* mudar formatação */}
+              </time>
+              {grouped[obj].map((lembrete: Lembrete) => (
+                <article className={style.card}>
+                  <p>{lembrete.nome}</p>
+                </article>
+              ))}
+            </>
+          );
+        })
       ) : (
-        // <p>Nada foi feito ainda 😢</p>
-        <>
-        <h2>08/02/2024</h2>
-        <article className={style.card}>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio, magnam temporibus. Quam necessitatibus ullam repudiandae soluta itaque dolores nemo expedita?</p>
-        </article>
-        </>
+        <p>Nada foi feito ainda 😢</p>
       )}
     </div>
   );
 }
+
+// lembretes.map(({ data, nome }) => (
+//   <article className={style.card}>
+//     <time dateTime={moment(data).format("YYYY-MM-DD")}>
+//       {moment(data).calendar(null, calendarFormat)}
+//     </time>
+//     <p>{nome}</p>
+//   </article>
+// ))
 
 export default index;
