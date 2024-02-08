@@ -19,14 +19,18 @@ function index(props: Props) {
   return (
     <div>
       <h1>Lista de lembretes</h1>
-      {lembretes.map(({ data, nome }) => (
-        <article>
-          <time dateTime={moment(data).format("YYYY-MM-DD")}>
-            {moment(data).calendar(null, calendarFormat)}
-          </time>
-          <p>{nome}</p>
-        </article>
-      ))}
+      {lembretes.length > 0 ? (
+        lembretes.map(({ data, nome }) => (
+          <article>
+            <time dateTime={moment(data).format("YYYY-MM-DD")}>
+              {moment(data).calendar(null, calendarFormat)}
+            </time>
+            <p>{nome}</p>
+          </article>
+        ))
+      ) : (
+        <p>Nada foi feito ainda 😢</p>
+      )}
     </div>
   );
 }

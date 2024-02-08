@@ -1,5 +1,4 @@
-import "./index.module.scss";
-
+import style from "./index.module.scss";
 import { useState } from "react";
 import { Lembrete } from "../types/lembrete";
 import NovoLembrete from "../components/NovoLembrete/index.tsx";
@@ -19,7 +18,7 @@ function index() {
   }
 
   return (
-    <div className="">
+    <div className={style.grid}>
       <aside>
         <NovoLembrete onCLick={addLembrete} />
       </aside>
