@@ -19,7 +19,7 @@ function index() {
 
   return (
     <div className={style.grid}>
-      <aside>
+      <aside className={style.asideBar}>
         <NovoLembrete onClick={addLembrete} />
       </aside>
       <main>
