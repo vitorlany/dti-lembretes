@@ -1,6 +1,6 @@
-import './App.sass'
+import './index.sass'
 
-function App() {
+function index() {
 
   return (
     <>
@@ -9,4 +9,4 @@ function App() {
   )
 }
 
-export default App
+export default index
