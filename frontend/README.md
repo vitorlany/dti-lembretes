@@ -1,7 +1,7 @@
 # Instruções de uso
 Primeiro certifique-se de ter instalado [node](https://nodejs.org/en/download/current)
 
-Após isso, intale todas as dependências do projeto
+Após isso, instale todas as dependências do projeto
 ```console
 npm i
 ```
@@ -11,6 +11,6 @@ Finalmente rodamos o projeto localmente com o comando abaixo
 npm run dev
 ```
 
-Agora podemos vizualisar a aplicação no [localhost](http://localhost:5173/)
+Agora podemos visualizar a aplicação no [localhost](http://localhost:5173/)
 
 *obs: não esqueça o backend 🙂*
