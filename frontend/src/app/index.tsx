@@ -1,13 +1,24 @@
-import './index.module.scss'
+import "./index.module.scss";
 
 import { FieldValues, useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 const handleCriar = async (fields: FieldValues) => {
-  console.log(fields)
-}
+  console.log(fields);
+};
 
 function index() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const validateDate = (inputDate: any) => {
+    let input = new Date(inputDate).setHours(0, 0, 0, 0);
+    let now = new Date().setHours(0, 0, 0, 0);
+    return input > now;
+  };
 
   return (
     <>
@@ -15,11 +26,32 @@ function index() {
       <form onSubmit={handleSubmit(handleCriar)}>
         <div>
           <label htmlFor="nome">Nome</label>
-          <input type="text" {...register("nome")} />
+          <input
+            type="text"
+            {...register("nome", {
+              required: "Favor informar um nome para continuar",
+            })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="nome"
+            render={({ message }) => <p>{message}</p>}
+          />
         </div>
         <div>
           <label htmlFor="data">Data</label>
-          <input type="date" {...register("data")} />
+          <input
+            type="date"
+            {...register("data", {
+              required: "A data deve ser superior ao dia de hoje",
+              validate: validateDate,
+            })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="data"
+            render={({ message }) => <p>{message}</p>}
+          />
         </div>
         <button type="submit">Criar</button>
       </form>
@@ -30,7 +62,7 @@ function index() {
         <p>Vídeo de estatística</p>
       </article>
     </>
-  )
+  );
 }
 
-export default index
+export default index;
