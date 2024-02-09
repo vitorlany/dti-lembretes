@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using backend.DTO;
 
 namespace backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LembreteController : ControllerBase
     {
 
@@ -14,14 +15,20 @@ namespace backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetLembrete")]
-        public IEnumerable<Lembrete> Get()
+        [HttpGet(Name = "GetAllLembretes")]
+        public IEnumerable<Lembrete> GetAll()
         {
             return Enumerable.Range(1, 5)
                 .Select(index =>
                     new Lembrete("Vitão", DateOnly.Parse("2024-03-01")
                  )
              ).ToArray();
+        }
+
+        [HttpPost(Name = "RegisterLembrete")]
+        public Lembrete Register([FromBody] RegisterLembreteDTO lembrete)
+        {
+            return new Lembrete("Vitão", DateOnly.Parse("2024-03-01"));
         }
     }
 }
