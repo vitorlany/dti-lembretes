@@ -1,14 +1,13 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Lembrete } from "../../types/lembrete";
+import moment from "moment";
 
 const validateDateAfterToday = (inputDate: any) => {
-  let input = new Date(inputDate);
-  let now = new Date();
-  input.setHours(24, 0, 0, 0);
-  now.setHours(0, 0, 0, 0);
+  let input = moment(inputDate)
+  let now = moment()
   return (
-    input.getTime() > now.getTime() || "A data deve ser superior ao dia de hoje"
+    input > now || "A data deve ser superior ao dia de hoje"
   );
 };
 
@@ -26,7 +25,7 @@ function index(props: Props) {
   const handleCriar = async (fields: FieldValues) => {
     props.onClick({
       nome: fields.nome,
-      data: fields.data,
+      data: moment(fields.data).toISOString(),
     });
   };
 

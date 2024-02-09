@@ -21,12 +21,9 @@ function index(props: Props) {
         dataArray.map((obj) => {
           return (
             <>
-              <time dateTime={moment(obj).format("YYYY-MM-DD")}>
-                {moment(obj).calendar()} 
-                {/* mudar formatação */}
-              </time>
+              <h2 className="mb-1">{moment(obj).calendar()}</h2>
               {grouped[obj].map((lembrete: Lembrete) => (
-                <article className={style.card}>
+                <article className={`${style.card} mb-2`}>
                   <p>{lembrete.nome}</p>
                 </article>
               ))}
@@ -39,14 +36,5 @@ function index(props: Props) {
     </div>
   );
 }
-
-// lembretes.map(({ data, nome }) => (
-//   <article className={style.card}>
-//     <time dateTime={moment(data).format("YYYY-MM-DD")}>
-//       {moment(data).calendar(null, calendarFormat)}
-//     </time>
-//     <p>{nome}</p>
-//   </article>
-// ))
 
 export default index;

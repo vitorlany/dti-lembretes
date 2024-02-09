@@ -4,7 +4,7 @@
   padding: 10px 16px;
   background-color: base.$disable-color;
   border-radius: base.$border-radius;
-  &:hover {
+  &:hover, &:focus {
     background-color: base.$primary-color;
     p {
       color: white;
