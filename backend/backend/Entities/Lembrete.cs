@@ -1,4 +1,4 @@
-﻿namespace backend;
+﻿namespace backend.Entity;
 
 public class Lembrete
 {
@@ -8,20 +8,21 @@ public class Lembrete
 
     public Lembrete(string name, DateOnly date)
     {
+        Id = 0;
         setName(name);
         setDate(date);
     }
 
     public Lembrete(long id, string name, DateOnly date)
     {
-        this.Id = id;
+        Id = id;
         setName(name);
         setDate(date);
     }
 
     private void setName(string value)
     {
-        if(string.IsNullOrWhiteSpace(value))
+        if (string.IsNullOrWhiteSpace(value))
             throw new ArgumentException("O nome deve ser preenchido");
         Name = value;
     }

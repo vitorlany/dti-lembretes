@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using backend.DTO;
+using backend.Entity;
 
 namespace backend.Controllers
 {
@@ -28,7 +29,7 @@ namespace backend.Controllers
         [HttpPost(Name = "RegisterLembrete")]
         public Lembrete Register([FromBody] RegisterLembreteDTO lembrete)
         {
-            return new Lembrete("Vitão", DateOnly.Parse("2024-03-01"));
+            return new Lembrete(lembrete.Name, DateOnly.Parse(lembrete.Date));
         }
     }
 }
