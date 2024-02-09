@@ -21,7 +21,7 @@ function index(props: Props) {
         dataArray.map((obj) => {
           return (
             <>
-              <h2 className="mb-1">{moment(obj).calendar()}</h2>
+              <h2 className="mb-1">{moment(obj).format('LL')}</h2>
               {grouped[obj].map((lembrete: Lembrete) => (
                 <article className={`${style.card} mb-2`}>
                   <p>{lembrete.nome}</p>
