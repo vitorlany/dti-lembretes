@@ -17,5 +17,7 @@ Todas as instruções estão na pasta de cada parte, no arquivo `read.me`
 - Sass (pré-processador css)
 - [Testing Library](https://testing-library.com/)
 
-## Back-end
+## Back-end / Dados / Ferramentas
 - C#
+- Docker
+- PostgreSQL
