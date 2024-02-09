@@ -1,5 +1,6 @@
 import style from "./index.module.scss";
 import { Lembrete } from "../../types/lembrete";
+import { FaTrash } from "react-icons/fa";
 import moment from "moment";
 
 interface Props {
@@ -23,8 +24,9 @@ function index(props: Props) {
             <>
               <h2 className="mb-1">{moment(obj).format('LL')}</h2>
               {grouped[obj].map((lembrete: Lembrete) => (
-                <article className={`${style.card} mb-2`}>
+                <article className={`${style.card} mb-2 ${style.articleGrid}`}>
                   <p>{lembrete.nome}</p>
+                  <button><FaTrash /></button>
                 </article>
               ))}
             </>

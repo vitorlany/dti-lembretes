@@ -4,10 +4,16 @@
   padding: 10px 16px;
   background-color: base.$disable-color;
   border-radius: base.$border-radius;
-  &:hover, &:focus {
-    background-color: base.$primary-color;
-    p {
-      color: white;
-    }
+}
+
+.articleGrid {
+  display: grid;
+  grid-template-columns: auto 100px;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  @include base.lg {
+    display: block;
   }
 }
