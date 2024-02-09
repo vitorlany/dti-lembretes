@@ -1,4 +1,4 @@
-﻿namespace backend.DTO
+﻿namespace backend.Controllers.DTOs
 {
     public class RegisterLembreteDTO
     {
