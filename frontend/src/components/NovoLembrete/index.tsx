@@ -25,7 +25,7 @@ function index(props: Props) {
   const handleCriar = async (fields: FieldValues) => {
     props.onClick({
       nome: fields.nome,
-      data: moment(fields.data).toISOString(),
+      data: fields.data,
     });
   };
 
