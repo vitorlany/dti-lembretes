@@ -1,5 +1,4 @@
 ﻿using backend.Entity;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace backend.Data
 {
@@ -10,6 +9,10 @@ namespace backend.Data
         public LembreteRepository(DataContext dataContext)
         {
             _dataContext = dataContext;
+        }
+        public IEnumerable<Lembrete> ListarTodos()
+        {
+            return _dataContext.Lembretes.ToList();
         }
 
         public Lembrete Adicionar(Lembrete lembrete)
@@ -29,11 +32,6 @@ namespace backend.Data
                 return true;
             }
             return false;
-        }
-
-        public IEnumerable<Lembrete> ListarTodos()
-        {
-            return _dataContext.Lembretes.ToList();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace backend.Data
 {
     public interface ILembreteRepository
     {
-        Lembrete[] ListarTodos();
+        IEnumerable<Lembrete> ListarTodos();
 
         Lembrete Adicionar(Lembrete lembrete);
 
