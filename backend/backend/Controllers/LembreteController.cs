@@ -17,14 +17,14 @@ namespace backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetAllLembretes")]
-        public IEnumerable<Lembrete> GetAll()
+        [HttpGet(Name = "ListarTodos")]
+        public IEnumerable<Lembrete> ListarTodos()
         {
             return data.Lembretes.ToList();
         }
 
-        [HttpPost(Name = "RegisterLembrete")]
-        public Lembrete Register([FromBody] RegisterLembreteDTO lembrete)
+        [HttpPost(Name = "AdicionarLembrete")]
+        public Lembrete Adicionar([FromBody] RegisterLembreteDTO lembrete)
         {
             Lembrete lembrete1 = new Lembrete(lembrete.Name, DateOnly.Parse(lembrete.Date));
             data.Add(lembrete1);
@@ -32,7 +32,7 @@ namespace backend.Controllers
             return lembrete1;
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}", Name = "DeletarLembrete")]
         public Lembrete Delete(long id)
         {
             Lembrete? lembrete = data.Lembretes.Find(id);

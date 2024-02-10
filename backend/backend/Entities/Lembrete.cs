@@ -1,14 +1,16 @@
-﻿namespace backend.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace backend.Entity;
 
 public class Lembrete
 {
+    [Key]
     public long Id { get; private set; }
     public string Name { get; private set; }
     public DateOnly Date { get; private set; }
 
     public Lembrete(string name, DateOnly date)
     {
-        Id = 0;
         setName(name);
         setDate(date);
     }
