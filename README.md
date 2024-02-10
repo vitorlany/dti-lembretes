@@ -20,4 +20,5 @@ Todas as instruções estão na pasta de cada parte, no arquivo `read.me`
 ## Back-end
 - C#
 - Sqlite
-- MSTest
+- Entity Framework (ORM)
+- MSTest (teste unitário)
