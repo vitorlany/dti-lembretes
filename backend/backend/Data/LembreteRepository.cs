@@ -10,6 +10,7 @@ namespace backend.Data
         {
             _dataContext = dataContext;
         }
+
         public IEnumerable<Lembrete> ListarTodos()
         {
             return _dataContext.Lembretes.ToList();

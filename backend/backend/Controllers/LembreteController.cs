@@ -8,7 +8,6 @@ namespace backend.Controllers
     [Route("api/[controller]")]
     public class LembreteController : ControllerBase
     {
-
         private readonly ILogger<LembreteController> _logger;
         private readonly ILembreteRepository lembreteRepository;
 

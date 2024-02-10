@@ -7,9 +7,8 @@ namespace backend.Data
     {
         public DbSet<Lembrete> Lembretes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            optionsBuilder.UseSqlite(@"Data Source=database.db");
         }
     }
 }
