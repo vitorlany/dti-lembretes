@@ -1,8 +1,6 @@
-using System;
 using backend.Data;
+using backend.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -18,6 +16,7 @@ services.AddDbContext<DataContext>(options =>
        options.UseSqlite(@"Data Source=database.db"));
 
 services.AddScoped<ILembreteRepository, LembreteRepository>();
+services.AddScoped<ILembreteService, LembreteService>();
 
 var app = builder.Build();
 

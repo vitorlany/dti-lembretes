@@ -2,38 +2,37 @@ using Microsoft.AspNetCore.Mvc;
 using backend.Entity;
 using backend.Controllers.DTOs;
 using backend.Data;
+using backend.Services;
 namespace backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class LembreteController : ControllerBase
     {
-        private readonly ILogger<LembreteController> _logger;
-        private readonly ILembreteRepository lembreteRepository;
+        public ILembreteService LembreteService { get; }
 
-        public LembreteController(ILogger<LembreteController> logger, ILembreteRepository lembreteRepository)
+        public LembreteController(ILembreteService lembreteService)
         {
-            _logger = logger;
-            this.lembreteRepository = lembreteRepository;
+            LembreteService = lembreteService;
         }
 
         [HttpGet(Name = "ListarTodos")]
         public IEnumerable<Lembrete> ListarTodos()
         {
-            return lembreteRepository.ListarTodos();
+            return LembreteService.ListarTodosLembretes();
         }
 
         [HttpPost(Name = "AdicionarLembrete")]
         public Lembrete Adicionar([FromBody] RegisterLembreteDTO lembrete)
         {
             Lembrete lembrete1 = new Lembrete(lembrete.Name, DateOnly.Parse(lembrete.Date));
-            return lembreteRepository.Adicionar(lembrete1);
+            return LembreteService.AdicionarLembrete(lembrete1);
         }
 
         [HttpDelete("{id}", Name = "DeletarLembrete")]
         public bool Delete(long id)
         {
-            return lembreteRepository.Deletar(id);
+            return LembreteService.DeletarLembrete(id);
         }
     }
 }
