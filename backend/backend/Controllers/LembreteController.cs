@@ -10,38 +10,31 @@ namespace backend.Controllers
     {
 
         private readonly ILogger<LembreteController> _logger;
-        private readonly DataContext data = new DataContext();
+        private readonly ILembreteRepository lembreteRepository;
 
-        public LembreteController(ILogger<LembreteController> logger)
+        public LembreteController(ILogger<LembreteController> logger, ILembreteRepository lembreteRepository)
         {
             _logger = logger;
+            this.lembreteRepository = lembreteRepository;
         }
 
         [HttpGet(Name = "ListarTodos")]
         public IEnumerable<Lembrete> ListarTodos()
         {
-            return data.Lembretes.ToList();
+            return lembreteRepository.ListarTodos();
         }
 
         [HttpPost(Name = "AdicionarLembrete")]
         public Lembrete Adicionar([FromBody] RegisterLembreteDTO lembrete)
         {
             Lembrete lembrete1 = new Lembrete(lembrete.Name, DateOnly.Parse(lembrete.Date));
-            data.Add(lembrete1);
-            data.SaveChanges();
-            return lembrete1;
+            return lembreteRepository.Adicionar(lembrete1);
         }
 
         [HttpDelete("{id}", Name = "DeletarLembrete")]
-        public Lembrete Delete(long id)
+        public bool Delete(long id)
         {
-            Lembrete? lembrete = data.Lembretes.Find(id);
-            if (lembrete != null)
-            {
-                data.Lembretes.Remove(lembrete);
-                data.SaveChanges();
-            }
-            return lembrete;
+            return lembreteRepository.Deletar(id);
         }
     }
 }
