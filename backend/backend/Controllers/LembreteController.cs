@@ -35,7 +35,13 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public Lembrete Delete(long id)
         {
-            return new Lembrete(id, "Vitão", DateOnly.Parse("2024-03-01"));
+            Lembrete? lembrete = data.Lembretes.Find(id);
+            if (lembrete != null)
+            {
+                data.Lembretes.Remove(lembrete);
+                data.SaveChanges();
+            }
+            return lembrete;
         }
     }
 }
