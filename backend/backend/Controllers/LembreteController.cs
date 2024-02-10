@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using backend.Entity;
 using backend.Controllers.DTOs;
+using backend.Data;
 namespace backend.Controllers
 {
     [ApiController]
@@ -9,6 +10,7 @@ namespace backend.Controllers
     {
 
         private readonly ILogger<LembreteController> _logger;
+        private readonly DataContext data = new DataContext();
 
         public LembreteController(ILogger<LembreteController> logger)
         {
@@ -18,16 +20,16 @@ namespace backend.Controllers
         [HttpGet(Name = "GetAllLembretes")]
         public IEnumerable<Lembrete> GetAll()
         {
-            return Enumerable.Range(1, 5)
-                .Select(index =>
-                    new Lembrete("Vitão", DateOnly.Parse("2024-03-01"))
-                ).ToArray();
+            return data.Lembretes.ToList();
         }
 
         [HttpPost(Name = "RegisterLembrete")]
         public Lembrete Register([FromBody] RegisterLembreteDTO lembrete)
         {
-            return new Lembrete(lembrete.Name, DateOnly.Parse(lembrete.Date));
+            Lembrete lembrete1 = new Lembrete(lembrete.Name, DateOnly.Parse(lembrete.Date));
+            data.Add(lembrete1);
+            data.SaveChanges();
+            return lembrete1;
         }
 
         [HttpDelete("{id}")]

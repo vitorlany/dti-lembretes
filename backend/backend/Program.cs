@@ -1,3 +1,5 @@
+using System;
+using backend.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
