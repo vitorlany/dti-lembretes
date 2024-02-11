@@ -1,26 +1,51 @@
 import style from "./index.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Lembrete } from "../types/lembrete";
-import NovoLembrete from "../components/NovoLembrete/index.tsx";
-import ListarLembretes from "../components/ListarLembretes/index.tsx";
+import { NovoLembrete } from "../components/NovoLembrete/index.tsx";
+import { ListarLembretes } from "../components/ListarLembretes/index.tsx";
+import { createLembrete, getLembretes } from "../services/apiService.ts";
 
 function index() {
-  const [lembretes, setLembretes] = useState<Lembrete[]>([
-    {
-      nome: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique sapiente inventore aut eum qui pariatur mollitia excepturi veritatis dolorum. Enim explicabo pariatur veniam aperiam repellat modi! Iste fuga dolorum sequi officia aliquam provident libero, reiciendis nulla. Voluptas, quaerat. Dolor a labore, iusto nostrum, corrupti alias quae id quisquam et officia deleniti dolore eligendi placeat doloribus consequatur quam quibusdam neque nam itaque? Amet, modi laudantium! Voluptatibus quia corrupti dolorum ratione in eum ipsam praesentium possimus similique, officia ex nostrum amet temporibus. Expedita enim ducimus sunt consequatur dicta accusamus odit distinctio error.",
-      data: "2024-02-17",
-    },
-  ]);
+  const [lembretes, setLembretes] = useState<Lembrete[]>([])
+
+  async function fetchLembretes() {
+    try {
+      const lembretesFromServer = await getLembretes()
+      setLembretes(lembretesFromServer)
+    } catch (error) {
+      console.error("Erro ao buscar lembretes:", error)
+    }
+  }
+
+  async function sendLembrete(lembrete: Lembrete) {
+    try {
+      return await createLembrete(lembrete)
+    } catch (error) {
+      console.error("Erro ao buscar lembretes:", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchLembretes()
+  }, [])
 
   function addLembrete(fields: Lembrete) {
-    console.log(fields)
-    setLembretes([
-      ...lembretes,
-      {
-        nome: fields.nome,
-        data: fields.data,
-      },
-    ]);
+    async function setData() {
+      setLembretes([
+        ...lembretes,
+        await sendLembrete(fields),
+      ])
+    }
+    setData()
+  }
+
+  function delLembrete(id: number) {
+    console.log(id)
+    async function sendData() {
+      await delLembrete(id)
+      setLembretes(lembretes)
+    }
+    sendData()
   }
 
   return (
@@ -29,7 +54,7 @@ function index() {
         <NovoLembrete onClick={addLembrete} />
       </aside>
       <main>
-        <ListarLembretes lembretes={lembretes} />
+        <ListarLembretes lembretes={lembretes} onDelete={delLembrete} />
       </main>
     </div>
   );

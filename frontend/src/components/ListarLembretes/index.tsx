@@ -4,12 +4,13 @@ import { BsTrash3Fill } from "react-icons/bs";
 import moment from "moment";
 
 interface Props {
-  lembretes: Lembrete[];
+  lembretes: Lembrete[]
+  onDelete: (id: number) => void
 }
 
-function index(props: Props) {
+export function ListarLembretes(props: Props) {
   let grouped = props.lembretes.reduce((r: any, a: any) => {
-    r[a.data] = [...(r[a.data] || []), a];
+    r[a.date] = [...(r[a.date] || []), a];
     return r;
   }, {});
 
@@ -25,10 +26,12 @@ function index(props: Props) {
               <h2 className="mb-1">{moment(obj).format("LL")}</h2>
               {grouped[obj].map((lembrete: Lembrete) => (
                 <article className={`${style.card} mb-2 ${style.articleGrid}`}>
-                  <p>{lembrete.nome}</p>
-                  <button>
-                    <BsTrash3Fill />
-                  </button>
+                  <p>{lembrete.name}</p>
+                  {lembrete.id && (
+                    <button onClick={() => { if (lembrete.id) props.onDelete(lembrete.id) }}>
+                      <BsTrash3Fill />
+                    </button>
+                  )}
                 </article>
               ))}
             </>
@@ -40,5 +43,3 @@ function index(props: Props) {
     </div>
   );
 }
-
-export default index;

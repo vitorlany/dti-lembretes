@@ -2,7 +2,6 @@ import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Lembrete } from "../../types/lembrete";
 import moment from "moment";
-import { createLembrete } from "../../services/apiService";
 
 const validateDateAfterToday = (inputDate: any) => {
   let input = moment(inputDate);
@@ -14,7 +13,7 @@ interface Props {
   onClick: (lembrete: Lembrete) => void;
 }
 
-function index(props: Props) {
+export function NovoLembrete(props: Props) {
   const {
     register,
     handleSubmit,
@@ -23,10 +22,9 @@ function index(props: Props) {
 
   const handleCriar = async (fields: FieldValues) => {
     const { nome, data } = fields;
-    await createLembrete({ name: nome, date: data });
     props.onClick({
-      nome: fields.nome,
-      data: fields.data,
+      name: nome,
+      date: data,
     });
   };
 
@@ -71,5 +69,3 @@ function index(props: Props) {
     </div>
   );
 }
-
-export default index;

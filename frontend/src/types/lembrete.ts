@@ -1,4 +1,5 @@
 export type Lembrete = {
-    nome: string;
-    data: string;
+    id?: number
+    name: string
+    date: string
 }
