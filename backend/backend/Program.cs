@@ -5,16 +5,15 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-// Add services to the container.
+// Cors
 services.AddCors(options =>
 {
     options.AddDefaultPolicy(
-                          policy =>
-                          {
-                              policy.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-                          });
+        policy => {
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 });
 
 builder.Services.AddControllers();
