@@ -2,13 +2,12 @@ import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Lembrete } from "../../types/lembrete";
 import moment from "moment";
+import { createLembrete } from "../../services/apiService";
 
 const validateDateAfterToday = (inputDate: any) => {
-  let input = moment(inputDate)
-  let now = moment()
-  return (
-    input > now || "A data deve ser superior ao dia de hoje"
-  );
+  let input = moment(inputDate);
+  let now = moment();
+  return input > now || "A data deve ser superior ao dia de hoje";
 };
 
 interface Props {
@@ -23,6 +22,8 @@ function index(props: Props) {
   } = useForm();
 
   const handleCriar = async (fields: FieldValues) => {
+    const { nome, data } = fields;
+    await createLembrete({ name: nome, date: data });
     props.onClick({
       nome: fields.nome,
       data: fields.data,
@@ -63,7 +64,9 @@ function index(props: Props) {
             render={({ message }) => <p>{message}</p>}
           />
         </div>
-        <button className="mt-1" type="submit">Criar</button>
+        <button className="mt-1" type="submit">
+          Criar
+        </button>
       </form>
     </div>
   );
