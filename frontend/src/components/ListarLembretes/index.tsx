@@ -4,8 +4,8 @@ import { BsTrash3Fill } from "react-icons/bs";
 import moment from "moment";
 
 interface Props {
-  lembretes: Lembrete[]
-  onDelete: (id: number) => void
+  lembretes: Lembrete[];
+  onDelete: (id: number) => void;
 }
 
 export function ListarLembretes(props: Props) {
@@ -13,6 +13,9 @@ export function ListarLembretes(props: Props) {
     r[a.date] = [...(r[a.date] || []), a];
     return r;
   }, {});
+
+  // ordem cronológica
+  grouped = Object.fromEntries(Object.entries(grouped).sort());
 
   let dataArray = Object.keys(grouped);
 
@@ -28,7 +31,11 @@ export function ListarLembretes(props: Props) {
                 <article className={`${style.card} mb-2 ${style.articleGrid}`}>
                   <p>{lembrete.name}</p>
                   {lembrete.id && (
-                    <button onClick={() => { if (lembrete.id) props.onDelete(lembrete.id) }}>
+                    <button
+                      onClick={() => {
+                        if (lembrete.id) props.onDelete(lembrete.id);
+                      }}
+                    >
                       <BsTrash3Fill />
                     </button>
                   )}
