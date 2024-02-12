@@ -9,4 +9,4 @@ Pronto, a aplicação está rodando :)
 
 Certifique-se de ter a porta `5187` aberta
 
-Documentação da API ´http://localhost:5187/swagger/index.html´
+Documentação da API http://localhost:5187/swagger/index.html
