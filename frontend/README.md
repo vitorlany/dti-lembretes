@@ -11,6 +11,8 @@ Finalmente rodamos o projeto localmente com o comando abaixo
 npm run dev
 ```
 
+Certifique-se de ter a porta `5173` disponível
+
 Agora podemos visualizar a aplicação no [localhost](http://localhost:5173/)
 
 *obs: não esqueça o backend 🙂*
