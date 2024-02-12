@@ -23,7 +23,7 @@ Todas as instruções estão na pasta de cada parte, no arquivo `README.md`
 - React.js (Vite)
 - Typescript
 - Sass (pré-processador css)
-- [Testing Library](https://testing-library.com/)
+- [Testing Library](https://testing-library.com/) + Jest
 
 ## Back-end
 - C#
