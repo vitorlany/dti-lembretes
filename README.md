@@ -14,6 +14,7 @@ Na parte do back-end, a minha maior preocupação foi deixar a regra de negócio
 Como todos os requisitos necessários já foram previamente descritos, as decisões foram apenas relacionadas às tecnologias.
 - React.js: já tinha familiaridade com a biblioteca, além de ser requisito da vaga.
 - C#: ainda não tinha um contato tão profundo, mas aceitei esse desafio e aprendi tudo o que precisava para realizar a atividade, seguindo os padrões que já usava em outras linguagens/frameworks mantendo um bom padrão de código
+- Sqlite: para facilitar a correção e não precisar exigir instalação de um banco ou docker, foi escolhido Sqlite por rodar em memória.
 
 # Instruções pra executar o sistema
 Todas as instruções estão na pasta de cada parte, no arquivo `README.md`
