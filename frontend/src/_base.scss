@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mukta+Mahee:wght@400;500;700&display=swap");
 
-$primary-color: #33aab7;
-$disable-color: rgb(219, 219, 219);
+$primary-color: rgba(51, 170, 183, 1);
+$primary-color-border: rgba(51, 170, 183, 0.58);
+$background-color: #F2F2F2;
 $text-01: #0e2b2e;
-$text-02: #636e72;
-$border-radius: 8px;
+$text-02: #4a5255;
+$border-radius: 10px;
 
-$spacing-1: 16px;
-$spacing-2: 8px;
+$spacing-1: 32px;
+$spacing-2: 16px;
 
 * {
   box-sizing: border-box;
@@ -27,29 +28,32 @@ h6 {
   color: $text-01;
 }
 
-input {
+input, textarea {
   width: 100%;
   max-width: 300px;
-  font-size: medium;
   padding: 10px 16px;
   border: 0;
+  font-size: large;
   border-radius: $border-radius;
-  border: 2px solid $text-02;
+  border: 3px solid $primary-color-border;
+  background-color: #F2F2F2;
   
   &:focus {
+    transition: all 0.3s ease-out;
     color: $text-01;
     outline: none;
-    border: 2px solid $primary-color;
+    border: 3px solid $primary-color;
   }
 }
 
 button {
   padding: 16px;
   border-radius: $border-radius;
-  background-color: $disable-color;
+  background-color: $background-color;
   outline: none;
   border: 2px solid $text-02;
   &:hover {
+    transition: all 0.3s ease-out;
     cursor: pointer;
     border: 2px solid $primary-color;
     background-color: $primary-color;

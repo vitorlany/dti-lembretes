@@ -2,13 +2,13 @@
 
 .card {
   padding: 10px 16px;
-  background-color: base.$disable-color;
+  background-color: base.$background-color;
   border-radius: base.$border-radius;
 }
 
 .articleGrid {
   display: grid;
-  grid-template-columns: auto 100px;
+  grid-template-columns: auto 50px;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;

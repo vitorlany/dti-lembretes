@@ -1,6 +1,6 @@
 import style from "./index.module.scss";
 import { Lembrete } from "../../types/lembrete";
-import { BsTrash3Fill } from "react-icons/bs";
+import { IoMdClose } from "react-icons/io";
 import moment from "moment";
 
 interface Props {
@@ -27,6 +27,7 @@ export function ListarLembretes(props: Props) {
           return (
             <>
               <h2 className="mb-1">{moment(obj).format("LL")}</h2>
+              <hr style={{marginTop: -32}} className="mb-2"/>
               {grouped[obj].map((lembrete: Lembrete) => (
                 <article className={`${style.card} mb-2 ${style.articleGrid}`}>
                   <p>{lembrete.name}</p>
@@ -36,7 +37,7 @@ export function ListarLembretes(props: Props) {
                         if (lembrete.id) props.onDelete(lembrete.id);
                       }}
                     >
-                      <BsTrash3Fill />
+                      <IoMdClose />
                     </button>
                   )}
                 </article>

@@ -34,8 +34,8 @@ export function NovoLembrete(props: Props) {
       <form onSubmit={handleSubmit(handleCriar)}>
         <div>
           <label htmlFor="nome">Nome</label>
-          <input
-            type="text"
+          <textarea 
+            // type="text"
             placeholder="Insira o nome do lembrete"
             {...register("nome", {
               required: "Favor informar um nome para continuar",
