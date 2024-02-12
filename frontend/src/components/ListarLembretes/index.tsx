@@ -32,7 +32,7 @@ export function ListarLembretes(props: Props) {
                 <article className={`${style.card} mb-2 ${style.articleGrid}`}>
                   <p>{lembrete.name}</p>
                   {lembrete.id && (
-                    <button
+                    <button style={{aspectRatio : 1}}
                       onClick={() => {
                         if (lembrete.id) props.onDelete(lembrete.id);
                       }}
