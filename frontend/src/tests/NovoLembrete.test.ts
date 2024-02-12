@@ -1,4 +1,7 @@
+import { render } from "react-dom";
+import { NovoLembrete } from "../components/NovoLembrete"; 
+import '@testing-library/jest-dom'
 
-test('adds 1 + 2 to equal 3', () => {
-    expect(1 + 2).toBe(3);
+test('teste renderização', () => {
+    render(<NovoLembrete />)
 });
