@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Lembrete } from "../types/lembrete";
 import { NovoLembrete } from "../components/NovoLembrete/index.tsx";
 import { ListarLembretes } from "../components/ListarLembretes/index.tsx";
-import { createLembrete, getLembretes } from "../services/apiService.ts";
+import { createLembrete, deleteLembretes, getLembretes } from "../services/apiService.ts";
 
 function index() {
   const [lembretes, setLembretes] = useState<Lembrete[]>([])
@@ -40,10 +40,9 @@ function index() {
   }
 
   function delLembrete(id: number) {
-    console.log(id)
     async function sendData() {
-      await delLembrete(id)
-      setLembretes(lembretes)
+      await deleteLembretes(id)
+      await fetchLembretes()
     }
     sendData()
   }
